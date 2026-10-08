@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Shared design tokens, header/footer, buttons, states -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Admin-page-specific styles -->
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ==========
+       This is a separate admin identity from the customer login
+       (auth.js / fitLockerCurrentUser), so the nav here is
+       deliberately minimal — no #authNavSlot. -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Admin</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="shop.html" class="site-nav__link">Back to Shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-page">
+
+    <!-- ========== ADMIN LOGIN ========== -->
+    <section class="admin-login" id="adminLoginSection">
+      <h1 class="admin-page__title">Admin Login</h1>
+      <p class="admin-page__subtitle">
+        Demo admin account for this school project — not real authentication.
+      </p>
+
+      <form class="admin-login__form" id="adminLoginForm" novalidate>
+        <div class="admin-login__field">
+          <label class="admin-login__label" for="adminEmail">Email</label>
+          <input class="admin-login__input" type="email" id="adminEmail" autocomplete="username" />
+        </div>
+
+        <div class="admin-login__field">
+          <label class="admin-login__label" for="adminPassword">Password</label>
+          <input class="admin-login__input" type="password" id="adminPassword" autocomplete="current-password" />
+        </div>
+
+        <p class="admin-login__message" id="adminLoginMessage" hidden></p>
+
+        <button type="submit" class="btn admin-login__submit">Log In</button>
+      </form>
+    </section>
+
+    <!-- ========== ADMIN DASHBOARD ========== -->
+    <section class="admin-dashboard" id="adminDashboardSection" hidden>
+      <div class="admin-dashboard__header">
+        <div>
+          <h1 class="admin-page__title">Admin Dashboard</h1>
+          <p class="admin-page__subtitle" id="adminWelcome"></p>
+        </div>
+        <button type="button" class="btn btn--secondary" id="adminLogoutBtn">Logout</button>
+      </div>
+
+      <div class="admin-tabs" id="adminTabs">
+        <button type="button" class="admin-tab admin-tab--active" data-tab="dashboard">Dashboard</button>
+        <button type="button" class="admin-tab" data-tab="products">Product Management</button>
+        <button type="button" class="admin-tab" data-tab="categories">Categories</button>
+        <button type="button" class="admin-tab" data-tab="orders">Order Management</button>
+        <button type="button" class="admin-tab" data-tab="complaints">Complaints</button>
+      </div>
+
+      <!-- ---------- Dashboard tab ---------- -->
+      <div class="admin-tab-panel" id="tab-dashboard">
+        <div class="admin-stats">
+          <div class="admin-stat-card">
+            <p class="admin-stat-card__label">Total Products</p>
+            <p class="admin-stat-card__value" id="statTotalProducts">0</p>
+          </div>
+          <div class="admin-stat-card">
+            <p class="admin-stat-card__label">Total Orders</p>
+            <p class="admin-stat-card__value" id="statTotalOrders">0</p>
+          </div>
+          <div class="admin-stat-card">
+            <p class="admin-stat-card__label">Total Items in Stock</p>
+            <p class="admin-stat-card__value" id="statTotalStock">0</p>
+          </div>
+          <div class="admin-stat-card">
+            <p class="admin-stat-card__label">Total Sales</p>
+            <p class="admin-stat-card__value" id="statTotalSales">₦0</p>
+          </div>
+          <div class="admin-stat-card">
+            <p class="admin-stat-card__label">Open Complaints</p>
+            <p class="admin-stat-card__value" id="statOpenComplaints">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- Products tab ---------- -->
+      <div class="admin-tab-panel" id="tab-products" hidden>
+      <!-- ========== PRODUCT MANAGEMENT ========== -->
+      <div class="admin-products">
+        <div class="admin-products__header">
+          <h2 class="admin-section-title">Manage Products</h2>
+          <button type="button" class="btn" id="addProductBtn">+ Add Product</button>
+        </div>
+
+        <!-- ---------- Add / Edit form (hidden until needed) ---------- -->
+        <form class="admin-product-form" id="productForm" hidden novalidate>
+          <h3 class="admin-section-title" id="productFormTitle">Add Product</h3>
+
+          <!-- Set when editing an existing product; empty when adding a new one. -->
+          <input type="hidden" id="productId" value="" />
+
+          <div class="admin-product-form__grid">
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productName">Name</label>
+              <input class="admin-login__input" type="text" id="productName" />
+            </div>
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productCategory">Category</label>
+              <select class="admin-login__input" id="productCategory"></select>
+              <p style="color: var(--ink-faint); font-size: 0.78rem; margin: 4px 0 0;">Manage the category list in the Categories tab.</p>
+            </div>
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productSubcategory">Subcategory</label>
+              <input class="admin-login__input" type="text" id="productSubcategory" placeholder="Shirts, Dresses, etc." />
+            </div>
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productPrice">Price (₦)</label>
+              <input class="admin-login__input" type="number" id="productPrice" min="0" step="1" />
+            </div>
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productStock">Stock</label>
+              <input class="admin-login__input" type="number" id="productStock" min="0" step="1" />
+            </div>
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productImageFile">Product Image</label>
+              <input class="admin-login__input" type="file" id="productImageFile" accept="image/*" />
+              <input type="hidden" id="productImage" value="" />
+              <div class="admin-product-form__image-preview" id="productImagePreview" hidden>
+                <img id="productImagePreviewImg" src="" alt="Selected product image" />
+                <button type="button" class="admin-product-row__delete-btn" id="productImageClearBtn">Remove image</button>
+              </div>
+              <p style="color: var(--ink-faint); font-size: 0.78rem; margin: 4px 0 0;">Optional. Choose a picture from your computer.</p>
+            </div>
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productColors">Colors</label>
+              <input class="admin-login__input" type="text" id="productColors" placeholder="Comma-separated, e.g. Black, White (optional)" />
+            </div>
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="productSizes">Sizes</label>
+              <input class="admin-login__input" type="text" id="productSizes" placeholder="Comma-separated, e.g. S, M, L (optional)" />
+            </div>
+
+            <div class="admin-product-form__field admin-product-form__field--full">
+              <label class="admin-login__label" for="productDescription">Description</label>
+              <textarea class="admin-login__input" id="productDescription" rows="3" placeholder="Optional"></textarea>
+            </div>
+          </div>
+
+          <p class="admin-login__message" id="productFormMessage" hidden></p>
+
+          <div class="admin-product-form__actions">
+            <button type="submit" class="btn" id="productFormSaveBtn">Save Product</button>
+            <button type="button" class="btn btn--secondary" id="productFormCancelBtn">Cancel</button>
+          </div>
+        </form>
+
+        <!-- ---------- Product list ---------- -->
+        <div class="admin-product-list" id="adminProductList"></div>
+
+        <p class="state-message__body" id="adminProductsEmpty" hidden style="text-align: center; padding: 24px 0;">
+          No products yet — click "Add Product" to create one.
+        </p>
+      </div>
+      </div>
+
+      <!-- ---------- Categories tab ---------- -->
+      <div class="admin-tab-panel" id="tab-categories" hidden>
+        <div class="admin-products">
+          <div class="admin-products__header">
+            <h2 class="admin-section-title">Manage Categories</h2>
+            <button type="button" class="btn" id="addCategoryBtn">+ Add Category</button>
+          </div>
+
+          <!-- ---------- Add / rename form (hidden until needed) ---------- -->
+          <form class="admin-product-form" id="categoryForm" hidden novalidate>
+            <h3 class="admin-section-title" id="categoryFormTitle">Add Category</h3>
+            <input type="hidden" id="categoryId" value="" />
+
+            <div class="admin-product-form__field">
+              <label class="admin-login__label" for="categoryName">Category Name</label>
+              <input class="admin-login__input" type="text" id="categoryName" />
+            </div>
+
+            <p class="admin-login__message" id="categoryFormMessage" hidden></p>
+
+            <div class="admin-product-form__actions">
+              <button type="submit" class="btn" id="categoryFormSaveBtn">Save Category</button>
+              <button type="button" class="btn btn--secondary" id="categoryFormCancelBtn">Cancel</button>
+            </div>
+          </form>
+
+          <!-- ---------- Category list ---------- -->
+          <div class="admin-category-list" id="adminCategoryList"></div>
+
+          <p class="state-message__body" id="adminCategoriesEmpty" hidden style="text-align: center; padding: 24px 0;">
+            No categories yet — click "Add Category" to create one.
+          </p>
+        </div>
+      </div>
+
+      <!-- ---------- Orders tab ---------- -->
+      <div class="admin-tab-panel" id="tab-orders" hidden>
+        <div class="admin-orders">
+          <h2 class="admin-section-title">Manage Orders</h2>
+
+          <div class="admin-order-list" id="adminOrderList"></div>
+
+          <p class="state-message__body" id="adminOrdersEmpty" hidden style="text-align: center; padding: 24px 0;">
+            No orders found.
+          </p>
+        </div>
+      </div>
+
+      <!-- ---------- Complaints tab ---------- -->
+      <div class="admin-tab-panel" id="tab-complaints" hidden>
+        <div class="admin-complaints">
+          <div class="admin-products__header">
+            <h2 class="admin-section-title">Complaints</h2>
+          </div>
+
+          <div class="admin-complaint-filters" id="complaintFilters">
+            <button type="button" class="filter-pill filter-pill--active" data-status="All">All</button>
+            <button type="button" class="filter-pill" data-status="Open">Open</button>
+            <button type="button" class="filter-pill" data-status="In Review">In Review</button>
+            <button type="button" class="filter-pill" data-status="Resolved">Resolved</button>
+            <button type="button" class="filter-pill" data-status="Closed">Closed</button>
+          </div>
+
+          <div class="admin-complaint-list" id="adminComplaintList"></div>
+
+          <p class="state-message__body" id="adminComplaintsEmpty" hidden style="text-align: center; padding: 24px 0;">
+            No complaints found.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

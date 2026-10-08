@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIT LOCKER — Your Everyday Fit.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link site-nav__link--active">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="home-hero">
+      <div class="home-section__inner">
+        <span class="home-hero__eyebrow">New Season</span>
+        <h1 class="home-hero__title">Your Everyday Fit.</h1>
+        <p class="home-hero__subtitle">Clean, casual essentials for Men, Women, and Kids — built for comfort, made to last.</p>
+        <div class="home-hero__actions">
+          <a href="shop.html" class="btn home-hero__cta">Shop All Products</a>
+          <a href="#categoryGrid" class="home-hero__secondary-link">Browse by category &darr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== VALUE PROPS ========== -->
+    <section class="home-values">
+      <div class="home-section__inner">
+        <div class="home-values__grid">
+          <div class="home-value">
+            <p class="home-value__mark">01</p>
+            <h3 class="home-value__title">Everyday Essentials</h3>
+            <p class="home-value__body">Simple, well-made pieces designed to work with everything else in your closet.</p>
+          </div>
+          <div class="home-value">
+            <p class="home-value__mark">02</p>
+            <h3 class="home-value__title">Honest Pricing</h3>
+            <p class="home-value__body">Fair prices on quality basics — no markups for a logo, no surprises at checkout.</p>
+          </div>
+          <div class="home-value">
+            <p class="home-value__mark">03</p>
+            <h3 class="home-value__title">Easy to Shop</h3>
+            <p class="home-value__body">Clear sizing, real stock counts, and a straightforward checkout from start to finish.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CATEGORIES (dynamic) ========== -->
+    <section class="home-categories">
+      <div class="home-section__inner">
+        <div class="home-categories__heading">
+          <h2 class="home-categories__title">Shop by Category</h2>
+          <p class="home-categories__subtitle">Find your fit, sorted the way you shop.</p>
+        </div>
+        <!-- Populated from fitLockerCategories by js/home.js — adding a
+             category in the admin automatically adds a card here. -->
+        <div class="category-grid" id="categoryGrid"></div>
+      </div>
+    </section>
+
+    <!-- ========== CLOSING CTA ========== -->
+    <section class="home-cta">
+      <div class="home-section__inner">
+        <h2 class="home-cta__title">Ready to find your fit?</h2>
+        <p class="home-cta__body">Browse the full catalogue and build an everyday wardrobe you'll actually reach for.</p>
+        <a href="shop.html" class="btn">Shop All Products</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

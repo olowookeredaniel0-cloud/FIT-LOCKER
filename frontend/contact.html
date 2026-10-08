@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — FIT LOCKER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="shop.html#cart" class="site-nav__link">
+          Cart<span class="cart-badge" id="cartBadge" hidden>0</span>
+        </a>
+        <a href="login.html" class="site-nav__link">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-intro">
+      <h1 class="page-intro__title">Contact Us</h1>
+      <p class="page-intro__subtitle">Questions about an order, a product, or anything else — we're here.</p>
+    </section>
+
+    <section class="contact-page">
+      <div class="contact-page__form-wrap">
+        <form class="auth-form" id="contactForm" novalidate>
+          <div class="auth-form__field">
+            <label class="auth-form__label" for="contactName">Name</label>
+            <input class="auth-form__input" type="text" id="contactName" name="name" required>
+          </div>
+          <div class="auth-form__field">
+            <label class="auth-form__label" for="contactEmail">Email</label>
+            <input class="auth-form__input" type="email" id="contactEmail" name="email" required>
+          </div>
+          <div class="auth-form__field">
+            <label class="auth-form__label" for="contactMessage">Message</label>
+            <textarea class="auth-form__input contact-page__textarea" id="contactMessage" name="message" rows="5" required></textarea>
+          </div>
+
+          <div class="auth-form__message" id="contactFormMessage" hidden></div>
+
+          <button type="submit" class="btn auth-form__submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-page__info">
+        <h2 class="contact-page__info-title">Get in Touch</h2>
+        <p class="contact-page__info-line"><strong>Email:</strong> support@fitlocker.example</p>
+        <p class="contact-page__info-line"><strong>Hours:</strong> Mon–Fri, 9am–5pm</p>
+        <p class="contact-page__info-line">
+          Looking for order help? Check your <a href="shop.html#cart">cart</a> first —
+          most order questions can be sorted out there.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <p class="brand__tagline">Your Everyday Fit.</p>
+      </div>
+      <nav class="footer__links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer__copyright">&copy; <span id="footerYear"></span> FIT LOCKER. All rights reserved.</p>
+  </footer>
+
+  <script src="js/index.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

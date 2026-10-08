@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Reuses style.css (header/footer/buttons/states) and checkout.css
+       (summary panel + row styles) — no new CSS file needed for this page. -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="checkout-page" style="max-width: 560px;">
+
+    <!-- ========== ERROR STATE (order not found) ========== -->
+    <div class="state-message state-message--error" id="notFoundState" hidden>
+      <p class="state-message__title">We couldn't find that order.</p>
+      <p class="state-message__body">The order number may be incorrect, or this browser's saved data was cleared.</p>
+      <a href="shop.html" class="btn">Back to Shop</a>
+    </div>
+
+    <!-- ========== CONFIRMATION / RECEIPT ========== -->
+    <div id="confirmationLayout" hidden>
+      <div class="checkout-summary" id="receiptContent" style="text-align: center;">
+        <p class="receipt-brand">FIT LOCKER</p>
+        <h1 class="checkout-page__title" style="margin-bottom: 6px;">Order Confirmed</h1>
+        <p style="color: var(--ink-soft); margin: 0 0 24px;">Thanks for your order! Your receipt is below.</p>
+
+        <div class="checkout-summary__totals" style="text-align: left;">
+          <p class="checkout-summary__row">
+            <span>Order Number</span>
+            <span id="confirmOrderNumber"></span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Date</span>
+            <span id="confirmDate"></span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Customer Name</span>
+            <span id="confirmCustomerName"></span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Customer Email</span>
+            <span id="confirmCustomerEmail"></span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Delivery Address</span>
+            <span id="confirmAddress"></span>
+          </p>
+        </div>
+
+        <div class="receipt-items" id="confirmItems"></div>
+
+        <div class="checkout-summary__totals" style="text-align: left;">
+          <p class="checkout-summary__row">
+            <span>Subtotal</span>
+            <span id="confirmSubtotal"></span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Delivery Fee</span>
+            <span id="confirmDeliveryFee"></span>
+          </p>
+          <p class="checkout-summary__row checkout-summary__row--total">
+            <span>Total</span>
+            <span id="confirmTotal"></span>
+          </p>
+          <p class="checkout-summary__row" style="margin-top: 10px;">
+            <span>Payment Method</span>
+            <span id="confirmPaymentMethod"></span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Order Status</span>
+            <span id="confirmStatus"></span>
+          </p>
+        </div>
+
+        <div class="no-print" style="display: flex; gap: 12px; margin-top: 24px;">
+          <button type="button" class="btn" id="printReceiptBtn" style="flex: 1;">Print Receipt</button>
+          <a href="shop.html" class="btn btn--secondary" style="flex: 1; text-align: center;">Return to Shop</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/order-confirmation.js"></script>
+</body>
+</html>

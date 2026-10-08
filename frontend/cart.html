@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Shared catalogue styles (header, footer, buttons, states) -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Cart-page-specific styles -->
+  <link rel="stylesheet" href="css/cart.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+                                                                                                            
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="cart.html" class="site-nav__link site-nav__link--active">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cart-page">
+
+    <h1 class="cart-page__title">Your Cart</h1>
+
+    <!-- ========== EMPTY STATE ========== -->
+    <div class="state-message" id="emptyCartState" hidden>
+      <p class="state-message__title">Your cart is empty.</p>
+      <p class="state-message__body">Browse the shop to find something you like.</p>
+      <a href="shop.html" class="btn">Go to Shop</a>
+    </div>
+                    
+    <!-- ========== CART CONTENTS ========== -->
+    <div class="cart-layout" id="cartLayout" hidden>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <aside class="cart-summary">
+        <p class="cart-summary__row">
+          <span>Total</span>
+          <span id="cartTotal">₦0</span>
+        </p>
+        <a href="checkout.html" class="btn cart-summary__checkout">Proceed to Checkout</a>
+        <a href="shop.html" class="btn btn--secondary cart-summary__continue">Continue Shopping</a>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

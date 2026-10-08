@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — FIT LOCKER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="shop.html#cart" class="site-nav__link">
+          Cart<span class="cart-badge" id="cartBadge" hidden>0</span>
+        </a>
+        <a href="login.html" class="site-nav__link">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-intro">
+      <h1 class="page-intro__title">About FIT LOCKER</h1>
+      <p class="page-intro__subtitle">Minimalist. Casual. Everyday.</p>
+    </section>
+
+    <section class="about-page">
+      <p class="about-page__lead">
+        FIT LOCKER started with a simple idea: clothing shouldn't be complicated.
+        No loud logos, no seasonal gimmicks — just clean, versatile pieces you
+        can reach for every day without thinking twice.
+      </p>
+      <p class="about-page__body">
+        Every item in the collection is chosen for the same reasons: comfortable
+        fabric, a fit that works, and a look that pairs with everything else in
+        your closet. We keep the range focused so shopping stays simple, and we
+        keep the design language consistent so nothing you buy feels out of place
+        next to what you already own.
+      </p>
+
+      <div class="value-grid">
+        <div class="value-card">
+          <h3 class="value-card__title">Minimalist</h3>
+          <p class="value-card__body">Fewer, better pieces — no clutter, no noise.</p>
+        </div>
+        <div class="value-card">
+          <h3 class="value-card__title">Casual</h3>
+          <p class="value-card__body">Built for real days, not just the photos.</p>
+        </div>
+        <div class="value-card">
+          <h3 class="value-card__title">Everyday</h3>
+          <p class="value-card__body">Comfortable enough to wear on repeat.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2 class="cta-section__title">Find Your Everyday Fit.</h2>
+      <a href="shop.html" class="btn cta-section__button">Shop Now</a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <p class="brand__tagline">Your Everyday Fit.</p>
+      </div>
+      <nav class="footer__links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer__copyright">&copy; <span id="footerYear"></span> FIT LOCKER. All rights reserved.</p>
+  </footer>
+
+  <script src="js/index.js"></script>
+</body>
+</html>

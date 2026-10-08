@@ -1,0 +1,900 @@
+/* =========================================================
+   FIT LOCKER — style.css
+   Minimalist, casual, clean styling shared across the site:
+   header/nav, auth pages, the shop page, shared buttons/states,
+   footer, and the homepage. Page-specific stylesheets
+   (product.css, cart.css, checkout.css, admin.css, profile.css)
+   build on top of the tokens and shared classes defined here.
+   ========================================================= */
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --ink: #1c1b18;
+  --ink-soft: #57554e;
+  --ink-faint: #8a877d;
+  --line: #e4e1d9;
+  --accent: #3f4b3b;
+  --accent-hover: #2f3a2d;
+  --accent-soft: #edf0e7;
+  --warn: #8a5a1f;
+  --warn-soft: #f5ead8;
+  --danger: #8c3b2e;
+  --danger-soft: #f3e4e0;
+
+  --font-heading: "Archivo", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+
+  --radius: 4px;
+  --container-width: 1180px;
+}
+
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The browser's default [hidden] rule (display: none) loses to any
+   author rule that sets display explicitly on the same element
+   (e.g. .grid { display: grid }, .filter-dropdown__panel { display: flex }).
+   This makes hidden win every time, regardless of what else targets
+   the element. */
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Layout helpers ---------- */
+.site-header__inner,
+.shop,
+.site-footer {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ---------- Header / nav (every page) ---------- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand__name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+.brand__tagline {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.site-nav__link {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.site-nav__link:hover {
+  color: var(--ink);
+}
+
+.site-nav__link--active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* Rendered by auth.js into #authNavSlot on every page */
+.auth-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.auth-nav__greeting {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  transition: color 150ms ease;
+}
+
+.auth-nav__greeting:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.auth-nav__logout-btn {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.auth-nav__logout-btn:hover {
+  border-color: var(--ink-faint);
+  color: var(--ink);
+}
+
+/* ---------- Buttons (shared across every page) ---------- */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 150ms ease;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+}
+
+.btn--secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn--secondary:hover {
+  background: var(--bg);
+}
+
+.btn:disabled {
+  background: var(--surface);
+  color: var(--ink-faint);
+  border-color: var(--line);
+  cursor: not-allowed;
+}
+
+/* ---------- State message (shared: empty/error states on many pages) ---------- */
+.state-message {
+  max-width: 420px;
+  margin: 60px auto;
+  text-align: center;
+  padding: 32px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.state-message__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+}
+
+.state-message__body {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin: 0 0 18px;
+}
+
+.state-message--error .state-message__title {
+  color: var(--danger);
+}
+
+.state-message code {
+  background: var(--bg);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+/* ---------- Footer (every page) ---------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  padding-bottom: 24px;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   Auth pages — login.html / signup.html
+   ========================================================= */
+.auth-page {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.auth-page__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin: 0 0 6px;
+}
+
+.auth-page__subtitle {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin: 0 0 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-form__label {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.auth-form__input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 150ms ease;
+}
+
+.auth-form__input:focus {
+  border-color: var(--accent);
+}
+
+.auth-form__submit {
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.auth-form__message {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+}
+
+.auth-form__message--error {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.auth-form__message--success {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.auth-page__switch {
+  margin-top: 22px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.auth-page__switch a {
+  color: var(--ink);
+  font-weight: 500;
+  border-bottom: 1px solid var(--ink);
+}
+
+/* =========================================================
+   Shop page — shop.html
+   ========================================================= */
+.shop__intro {
+  padding-top: 40px;
+}
+
+.shop__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0 0 6px;
+}
+
+.shop__subtitle {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------- Controls bar: search + filters dropdown ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.controls__search {
+  flex: 1 1 280px;
+  max-width: 360px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 150ms ease;
+}
+
+.search-input::placeholder {
+  color: var(--ink-faint);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+/* Reused by admin.js's Complaints tab filter pills, not shop.html anymore. */
+.filter-pill {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.filter-pill--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.filter-pill--active:hover {
+  color: #fff;
+}
+
+/* ---------- Filters dropdown (shop.html — one button, one panel) ---------- */
+.filter-dropdown {
+  position: relative;
+}
+
+.filter-dropdown__toggle {
+  white-space: nowrap;
+}
+
+.filter-dropdown__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 10;
+  width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(28, 27, 24, 0.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filter-dropdown__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-dropdown__field label {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.filter-select {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+  width: 100%;
+  transition: border-color 150ms ease;
+}
+
+.filter-select:focus {
+  border-color: var(--accent);
+}
+
+.filter-dropdown__clear-btn {
+  padding: 9px 16px;
+  font-size: 0.85rem;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .filter-dropdown__panel {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+}
+
+/* ---------- Result count ---------- */
+.result-count {
+  margin: 18px 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Product grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+  padding-bottom: 60px;
+}
+
+/* ---------- Product card ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.card:hover {
+  border-color: var(--ink-faint);
+  box-shadow: 0 2px 10px rgba(28, 27, 24, 0.06);
+}
+
+.card__image-wrap {
+  aspect-ratio: 1 / 1;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 200ms ease;
+}
+
+.card:hover .card__image {
+  transform: scale(1.03);
+}
+
+.card__image-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 12px;
+}
+
+.card__body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.card__category {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.card__name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.02rem;
+  margin: 0;
+}
+
+.card__price {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 2px;
+}
+
+.card__stock {
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.card__stock--in {
+  color: var(--accent);
+}
+
+.card__stock--low {
+  color: var(--warn);
+}
+
+.card__stock--out {
+  color: var(--danger);
+}
+
+.card__button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.card__button:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.card__button:disabled {
+  background: var(--surface);
+  color: var(--ink-faint);
+  border-color: var(--line);
+  cursor: not-allowed;
+}
+
+/* ---------- Loading skeleton ---------- */
+.skeleton-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.skeleton-card__image {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  background: var(--line);
+  margin-bottom: 14px;
+  animation: pulse 1.3s ease-in-out infinite;
+}
+
+.skeleton-card__line {
+  height: 10px;
+  border-radius: 3px;
+  background: var(--line);
+  margin-bottom: 8px;
+  animation: pulse 1.3s ease-in-out infinite;
+}
+
+.skeleton-card__line--wide {
+  width: 80%;
+}
+
+.skeleton-card__line--narrow {
+  width: 45%;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-card__image,
+  .skeleton-card__line {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .controls__search {
+    max-width: none;
+  }
+  .shop__title {
+    font-size: 1.6rem;
+  }
+}
+
+/* =========================================================
+   Homepage — index.html
+   Each section below is full-width (so its border/background
+   reaches the viewport edges), with an inner wrapper that caps
+   content at --container-width, matching the .site-header /
+   .site-header__inner pattern used elsewhere.
+   ========================================================= */
+
+.home-section__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ---------- Hero ---------- */
+.home-hero {
+  text-align: center;
+  padding: 88px 0 72px;
+  border-bottom: 1px solid var(--line);
+}
+
+.home-hero__eyebrow {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin: 0 0 20px;
+}
+
+.home-hero__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+}
+
+.home-hero__subtitle {
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  max-width: 480px;
+  margin: 0 auto 32px;
+}
+
+.home-hero__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.home-hero__cta {
+  padding: 13px 30px;
+  font-size: 0.95rem;
+}
+
+.home-hero__secondary-link {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.home-hero__secondary-link:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* ---------- Value props row ---------- */
+.home-values {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.home-values__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  text-align: center;
+}
+
+.home-value__mark {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.home-value__title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 6px;
+}
+
+.home-value__body {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- Categories ---------- */
+.home-categories {
+  padding: 64px 0;
+}
+
+.home-categories__heading {
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.home-categories__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+}
+
+.home-categories__subtitle {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Rendered dynamically by js/home.js — one card per fitLockerCategories
+   entry. Shared with any other place category cards are used. */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px 20px;
+  text-align: center;
+  transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.category-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(28, 27, 24, 0.06);
+}
+
+.category-card__name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.category-card__cta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Closing CTA band ---------- */
+.home-cta {
+  text-align: center;
+  padding: 72px 24px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.home-cta__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0 0 12px;
+}
+
+.home-cta__body {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  max-width: 420px;
+  margin: 0 auto 24px;
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    padding: 56px 0 44px;
+  }
+  .home-hero__title {
+    font-size: 2.2rem;
+  }
+  .home-hero__subtitle {
+    font-size: 1rem;
+  }
+  .home-categories__title {
+    font-size: 1.35rem;
+  }
+  .home-cta__title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,280 @@
+/* ---------- Mobile Nav Toggle ---------- */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform 150ms ease, opacity 150ms ease;
+}
+
+/* ---------- Cart Badge ---------- */
+.cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.15;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.hero__subtitle {
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  margin: 0 0 28px;
+}
+
+.hero__image {
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__image-fallback {
+  color: var(--ink-faint);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Section Titles & Spacing ---------- */
+.category-section,
+.featured-section,
+.about-section,
+.cta-section {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 60px 24px;
+  border-top: 1px solid var(--line);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0 0 24px;
+}
+
+/* ---------- Category Grid ---------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.category-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 20px;
+  text-align: center;
+  transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(28, 27, 24, 0.04);
+}
+
+.category-card__name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+/* ---------- Featured Section ---------- */
+.featured-section__subtitle {
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+  font-size: 1.05rem;
+}
+
+/* ---------- About Section ---------- */
+.about-section__body {
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0;
+}
+
+/* ---------- CTA Section ---------- */
+.cta-section {
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cta-section__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin: 0 0 24px;
+}
+
+/* ---------- Footer Layout ---------- */
+.footer__grid {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.footer__links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__links a {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  transition: color 150ms ease;
+}
+
+.footer__links a:hover {
+  color: var(--ink);
+}
+
+.footer__copyright {
+  max-width: var(--container-width);
+  margin: 20px auto 0;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 40px;
+  }
+  .hero__title {
+    font-size: 2.4rem;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  .site-nav {
+    display: none; /* Can be toggled via JS if mobile menu expansion is implemented */
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .footer__grid {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- Brand Logo Wrap ---------- */
+.brand__logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.brand__logo-img {
+  height: 32px;
+  object-fit: contain;
+}
+
+/* ---------- CTA Image Upload Box ---------- */
+.cta-section {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.cta-upload-box {
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: border-color 150ms ease;
+  position: relative;
+}
+
+.cta-upload-box:hover {
+  border-color: var(--accent);
+}
+
+.cta-file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.cta-upload-prompt {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

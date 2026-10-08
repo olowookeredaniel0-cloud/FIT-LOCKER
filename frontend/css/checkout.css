@@ -1,0 +1,258 @@
+/* =========================================================
+   FIT LOCKER — checkout.css
+   Page-specific styles for checkout.html only.
+   Reuses design tokens, header/footer, buttons, and
+   state-message styles already defined in style.css.
+   ========================================================= */
+
+.checkout-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.checkout-page__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0 0 28px;
+}
+
+.checkout-section-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 0 0 18px;
+}
+
+/* ---------- Layout: form + summary ---------- */
+.checkout-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 780px) {
+  .checkout-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .checkout-form {
+    flex: 1;
+  }
+  .checkout-summary {
+    width: 320px;
+    flex-shrink: 0;
+  }
+}
+
+/* ---------- Form ---------- */
+.checkout-form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.checkout-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checkout-form__label {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.checkout-form__input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 150ms ease;
+}
+
+.checkout-form__input:focus {
+  border-color: var(--accent);
+}
+
+.checkout-form__input--invalid {
+  border-color: var(--danger);
+}
+
+.checkout-form__submit {
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.checkout-form__message {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+}
+
+.checkout-form__message--error {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.checkout-form__message--success {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ---------- Order summary ---------- */
+.checkout-summary {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.checkout-summary__items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.88rem;
+}
+
+.checkout-item__info {
+  min-width: 0;
+}
+
+.checkout-item__name {
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+}
+
+.checkout-item__variant {
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  margin: 2px 0 0;
+}
+
+.checkout-item__line-total {
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.checkout-summary__totals {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkout-summary__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.92rem;
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.checkout-summary__row--total {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 480px) {
+  .checkout-page__title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---------- Demo card payment form (payment.html) ---------- */
+.checkout-form__row {
+  display: flex;
+  gap: 16px;
+}
+
+.checkout-form__row .checkout-form__field {
+  flex: 1;
+}
+
+.demo-badge {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--warn);
+  background: var(--warn-soft);
+  padding: 3px 8px;
+  border-radius: var(--radius);
+  margin-left: 8px;
+}
+
+/* ---------- Printable receipt (order-confirmation.html) ---------- */
+.receipt-brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 4px;
+}
+
+.receipt-items {
+  text-align: left;
+  margin: 8px 0 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+
+.receipt-item-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.88rem;
+  padding: 6px 0;
+}
+
+.receipt-item-row__variant {
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  margin: 2px 0 0;
+}
+
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .checkout-summary {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Reuses style.css (header/footer/buttons/states) and checkout.css
+       (summary panel + row styles) — no new CSS file needed for this page. -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+
+    <h1 class="checkout-page__title">Payment</h1>
+
+    <!-- ========== GUARD STATE (no checkout details / empty cart) ========== -->
+    <div class="state-message" id="guardState" hidden>
+      <p class="state-message__title" id="guardTitle">Nothing to pay for yet.</p>
+      <p class="state-message__body" id="guardBody">Please complete checkout first.</p>
+      <a href="checkout.html" class="btn">Go to Checkout</a>
+    </div>
+
+    <!-- ========== PAYMENT LAYOUT ========== -->
+    <div id="paymentLayout" hidden>
+
+      <aside class="checkout-summary" style="margin-bottom: 24px;">
+        <h2 class="checkout-section-title">Order Summary</h2>
+
+        <div class="checkout-summary__items" id="paymentItems"></div>
+
+        <div class="checkout-summary__totals">
+          <p class="checkout-summary__row">
+            <span>Subtotal</span>
+            <span id="paymentSubtotal">₦0</span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Delivery Fee</span>
+            <span id="paymentDeliveryFee">₦0</span>
+          </p>
+          <p class="checkout-summary__row checkout-summary__row--total">
+            <span>Total Amount</span>
+            <span id="paymentTotal">₦0</span>
+          </p>
+        </div>
+      </aside>
+
+      <div class="checkout-form">
+        <h2 class="checkout-section-title">
+          <span class="demo-badge">CARD-PAYMENT</span>
+        </h2>
+
+        <div class="checkout-form__field">
+          <label class="checkout-form__label" for="cardName">Cardholder Name</label>
+          <input class="checkout-form__input" type="text" id="cardName" autocomplete="cc-name" />
+        </div>
+
+        <div class="checkout-form__field">
+          <label class="checkout-form__label" for="cardNumber">Card Number</label>
+          <input class="checkout-form__input" type="text" id="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" />
+        </div>
+
+        <div class="checkout-form__row">
+          <div class="checkout-form__field">
+            <label class="checkout-form__label" for="cardExpiry">Expiry Date</label>
+            <input class="checkout-form__input" type="text" id="cardExpiry" inputmode="numeric" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" />
+          </div>
+          <div class="checkout-form__field">
+            <label class="checkout-form__label" for="cardCVC">CVC</label>
+            <input class="checkout-form__input" type="text" id="cardCVC" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="cc-csc" />
+          </div>
+        </div>
+
+        <p class="checkout-form__message" id="paymentMessage" hidden></p>
+
+        <button type="button" class="btn checkout-form__submit" id="payNowBtn">Pay Now</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+</html>

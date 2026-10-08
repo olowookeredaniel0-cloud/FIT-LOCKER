@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Shared catalogue styles (header, footer, buttons, states) -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Product-page-specific styles -->
+  <link rel="stylesheet" href="css/product.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link site-nav__link--active">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="product-page">
+
+    <a href="shop.html" class="back-link">&larr; Back to Shop</a>
+
+    <!-- ========== LOADING STATE ========== -->
+    <div class="state-message" id="loadingState">
+      <p class="state-message__title">Loading product…</p>
+    </div>
+
+    <!-- ========== ERROR STATE ========== -->
+    <div class="state-message state-message--error" id="errorState" hidden>
+      <p class="state-message__title">We couldn't find this product.</p>
+      <p class="state-message__body">
+        It may have been removed from your saved catalogue, or the link is missing a product ID.
+      </p>
+      <a href="shop.html" class="btn">Back to Shop</a>
+    </div>
+
+    <!-- ========== PRODUCT DETAIL ========== -->
+    <div class="product-detail" id="productDetail" hidden>
+
+      <div class="product-detail__image-wrap">
+        <img id="productImage" class="product-detail__image" src="" alt="" />
+      </div>
+
+      <div class="product-detail__info">
+        <p class="product-detail__category" id="productCategory"></p>
+        <h1 class="product-detail__title" id="productName"></h1>
+        <p class="product-detail__price" id="productPrice"></p>
+        <p class="product-detail__description" id="productDescription"></p>
+        <p class="product-detail__stock" id="productStock"></p>
+
+        <!-- Color selection (hidden automatically if the product has no colors) -->
+        <div class="option-group" id="colorGroup">
+          <p class="option-group__label">Color</p>
+          <div class="swatch-row" id="colorOptions"></div>
+        </div>
+
+        <!-- Size selection (hidden automatically if the product has no sizes) -->
+        <div class="option-group" id="sizeGroup">
+          <p class="option-group__label">Size</p>
+          <div class="size-row" id="sizeOptions"></div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="option-group">
+          <p class="option-group__label">Quantity</p>
+          <div class="qty-control">
+            <button type="button" class="qty-control__btn" id="qtyMinus" aria-label="Decrease quantity">&minus;</button>
+            <span class="qty-control__value" id="qtyValue">1</span>
+            <button type="button" class="qty-control__btn" id="qtyPlus" aria-label="Increase quantity">&plus;</button>
+          </div>
+        </div>
+
+        <p class="detail-message" id="detailMessage" hidden></p>
+
+        <button class="btn add-to-cart-btn" id="addToCartBtn" type="button">Add to Cart</button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

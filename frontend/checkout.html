@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Shared catalogue styles (header, footer, buttons, states) -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Checkout-page-specific styles -->
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+
+    <h1 class="checkout-page__title">Checkout</h1>
+
+    <!-- ========== EMPTY CART STATE ========== -->
+    <div class="state-message" id="emptyCartState" hidden>
+      <p class="state-message__title">Your cart is empty.</p>
+      <p class="state-message__body">Add something from the shop before checking out.</p>
+      <a href="shop.html" class="btn">Go to Shop</a>
+    </div>
+
+    <!-- ========== CHECKOUT LAYOUT ========== -->
+    <div class="checkout-layout" id="checkoutLayout" hidden>
+
+      <form class="checkout-form" id="checkoutForm" novalidate>
+        <h2 class="checkout-section-title">Delivery Details</h2>
+
+        <div class="checkout-form__field">
+          <label class="checkout-form__label" for="fullName">Full Name</label>
+          <input class="checkout-form__input" type="text" id="fullName" autocomplete="name" />
+        </div>
+
+        <div class="checkout-form__field">
+          <label class="checkout-form__label" for="email">Email</label>
+          <input class="checkout-form__input" type="email" id="email" autocomplete="email" />
+        </div>
+
+        <div class="checkout-form__field">
+          <label class="checkout-form__label" for="phone">Phone Number</label>
+          <input class="checkout-form__input" type="tel" id="phone" autocomplete="tel" />
+        </div>
+
+        <div class="checkout-form__field">
+          <label class="checkout-form__label" for="address">Delivery Address</label>
+          <input class="checkout-form__input" type="text" id="address" autocomplete="street-address" />
+        </div>
+
+        <div class="checkout-form__field">
+          <label class="checkout-form__label" for="city">City</label>
+          <input class="checkout-form__input" type="text" id="city" autocomplete="address-level2" />
+        </div>
+
+        <p class="checkout-form__message" id="checkoutMessage" hidden></p>
+
+        <button type="submit" class="btn checkout-form__submit">Proceed to Payment</button>
+      </form>
+
+      <aside class="checkout-summary">
+        <h2 class="checkout-section-title">Order Summary</h2>
+
+        <div class="checkout-summary__items" id="checkoutItems"></div>
+
+        <div class="checkout-summary__totals">
+          <p class="checkout-summary__row">
+            <span>Subtotal</span>
+            <span id="checkoutSubtotal">₦0</span>
+          </p>
+          <p class="checkout-summary__row">
+            <span>Delivery Fee</span>
+            <span id="checkoutDeliveryFee">₦0</span>
+          </p>
+          <p class="checkout-summary__row checkout-summary__row--total">
+            <span>Grand Total</span>
+            <span id="checkoutGrandTotal">₦0</span>
+          </p>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

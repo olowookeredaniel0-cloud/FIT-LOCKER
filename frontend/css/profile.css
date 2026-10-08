@@ -1,0 +1,359 @@
+/* =========================================================
+   FIT LOCKER — profile.css
+   Page-specific styles for profile.html only.
+   Reuses design tokens, header/footer, buttons, and
+   state-message styles already defined in style.css.
+   ========================================================= */
+
+.profile-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.profile-page__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin: 0 0 20px;
+}
+
+.profile-section-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 0 0 16px;
+}
+
+/* ---------- Tabs (same pattern as admin.css) ---------- */
+.profile-tabs {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+
+.profile-tab {
+  border: none;
+  background: none;
+  color: var(--ink-soft);
+  padding: 10px 4px;
+  margin-right: 22px;
+  font-size: 0.9rem;
+  border-bottom: 2px solid transparent;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.profile-tab:hover {
+  color: var(--ink);
+}
+
+.profile-tab--active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+  font-weight: 500;
+}
+
+/* ---------- Cards ---------- */
+.profile-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.profile-empty {
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* ---------- Forms (account info + complaint) ---------- */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-form__label {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.profile-form__input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 150ms ease;
+}
+
+.profile-form__input:focus {
+  border-color: var(--accent);
+}
+
+.profile-form__input:disabled {
+  background: var(--bg);
+  color: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.profile-form__hint {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.profile-form__submit {
+  margin-top: 4px;
+  align-self: flex-start;
+}
+
+.profile-form__message {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+}
+
+.profile-form__message--error {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.profile-form__message--success {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ---------- Order rows (My Orders / Receipts) ---------- */
+.profile-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.profile-order-row__number {
+  font-weight: 600;
+  margin: 0;
+}
+
+.profile-order-row__meta {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+}
+
+.profile-order-row__badge {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.profile-order-row__badge--cancelled {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.profile-order-row__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-order-row__actions button,
+.profile-order-row__actions a {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  padding: 7px 12px;
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.profile-order-row__actions button:hover,
+.profile-order-row__actions a:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.profile-order-row__detail {
+  width: 100%;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.profile-order-item-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.85rem;
+  padding: 5px 0;
+}
+
+/* ---------- Order tracking timeline ---------- */
+.tracking-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.tracking-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.tracking-timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.tracking-timeline::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+
+.tracking-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  text-align: center;
+}
+
+.tracking-step__dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--line);
+}
+
+.tracking-step__label {
+  font-size: 0.76rem;
+  color: var(--ink-faint);
+}
+
+.tracking-step--done .tracking-step__dot {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.tracking-step--done .tracking-step__label {
+  color: var(--ink);
+}
+
+.tracking-step--current .tracking-step__dot {
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.tracking-cancelled-banner {
+  background: var(--danger-soft);
+  color: var(--danger);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+/* ---------- Complaints ---------- */
+.profile-complaint-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.complaint-row {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+
+.complaint-row__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.complaint-row__subject {
+  font-weight: 500;
+  margin: 0;
+}
+
+.complaint-row__meta {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+}
+
+.complaint-row__status {
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--ink-soft);
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.complaint-row__message {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 8px 0 0;
+}
+
+@media (max-width: 560px) {
+  .profile-order-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tracking-step__label {
+    font-size: 0.65rem;
+  }
+}

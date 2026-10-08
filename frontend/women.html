@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women's Collection — FIT LOCKER</title>
+  <!-- Link your CSS files -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/product.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body data-category="Women"> 
+
+  <!-- Header / Navigation (Include your standard navbar here) -->
+  <header>
+    <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link site-nav__link--active">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <header class="page-header">
+        <h1 class="page-title" id="categoryTitle">Women's Collection</h1>
+        <p class="page-subtitle">Explore our minimalist essentials designed for everyday comfort.</p>
+      </header>
+
+      <!-- Products Grid -->
+      <section class="products-section">
+        <div class="products-grid" id="categoryProductsGrid">
+          <!-- Dynamic products will be injected here -->
+        </div>
+        <p id="noProductsMessage" class="empty-message" hidden>No products found in this category.</p>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <!-- Footer code goes here -->
+  </footer>
+
+  <!-- Category Page Logic Script -->
+  <script src="js/catalogue.js"></script>
+  <script>
+    $(function () {
+      // Read the category target from the body's data-category attribute
+      const targetCategory = $("body").attr("data-category") || "";
+      $("#categoryTitle").text(targetCategory + "'s Collection");
+
+      // Fetch products using your catalogue script
+      const allProducts = window.FitLockerCatalogue ? window.FitLockerCatalogue.getProducts() : [];
+      
+      // Filter products strictly by matching category (case-insensitive)
+      const filteredProducts = allProducts.filter(function (product) {
+        return product.category && product.category.trim().toLowerCase() === targetCategory.toLowerCase();
+      });
+
+      const $grid =$("#categoryProductsGrid");
+      const $emptyMsg =$("#noProductsMessage");
+
+      $grid.empty();
+
+      if (filteredProducts.length === 0) {
+        $emptyMsg.attr("hidden", false);
+        return;
+      }
+
+      $emptyMsg.attr("hidden", true);
+
+      // Render the filtered product cards
+      filteredProducts.forEach(function (product) {
+        const productId = product._id || product.id;
+        const imageUrl = product.image || "img/placeholder.png";
+        
+        const cardHtml = `
+          <div class="product-card" data-id="${productId}">
+            <div class="product-card__image-wrap">
+              <img src="${imageUrl}" alt="${product.name}" class="product-card__img" onerror="this.src='img/placeholder.png'">
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">${product.name}</h3>
+              <p class="page-subtitle" style="font-size: 0.85rem; margin-bottom: 6px;">${product.subcategory || ''}</p>
+              <p class="product-card__price">₦${Number(product.price).toLocaleString()}</p>
+              <a href="product.html?id=${productId}" class="btn btn--secondary btn-sm" style="margin-top: 10px; width: 100%; text-align: center;">View Details</a>
+            </div>
+          </div>
+        `;
+        $grid.append(cardHtml);
+      });
+    });
+  </script>
+</body>
+</html>

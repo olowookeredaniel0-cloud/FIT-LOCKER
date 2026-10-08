@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-page">
+
+    <h1 class="auth-page__title">Log In</h1>
+
+    <form class="auth-form" id="loginForm" novalidate>
+      <div class="auth-form__field">
+        <label class="auth-form__label" for="loginEmail">Email</label>
+        <input class="auth-form__input" type="email" id="loginEmail" autocomplete="email" />
+      </div>
+
+      <div class="auth-form__field">
+        <label class="auth-form__label" for="loginPassword">Password</label>
+        <input class="auth-form__input" type="password" id="loginPassword" autocomplete="current-password" />
+      </div>
+
+      <p class="auth-form__message" id="loginMessage" hidden></p>
+
+      <button type="submit" class="btn auth-form__submit">Log In</button>
+    </form>
+
+    <p class="auth-page__switch">
+      Don't have an account? <a href="signup.html">Sign up</a>
+    </p>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    $(function () {
+      $("#loginForm").on("submit", function (event) {
+        event.preventDefault();
+
+        const email = $("#loginEmail").val();
+        const password = $("#loginPassword").val();
+        const $message = $("#loginMessage");
+
+        const result = window.FitLockerAuth.logIn(email, password);
+
+        if (!result.success) {
+          $message
+            .text(result.error)
+            .attr("class", "auth-form__message auth-form__message--error")
+            .attr("hidden", false);
+          return;
+        }
+
+        $message
+          .text("Logged in! Redirecting to the shop...")
+          .attr("class", "auth-form__message auth-form__message--success")
+          .attr("hidden", false);
+
+        window.setTimeout(function () {
+          window.location.href = "shop.html";
+        }, 700);
+      });
+    });
+  </script>
+</body>
+</html>

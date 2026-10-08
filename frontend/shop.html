@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link site-nav__link--active">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shop">
+
+    <!-- ========== PAGE INTRO ========== -->
+    <div class="shop__intro">
+      <h1 class="shop__title">Shop all products</h1>
+      <p class="shop__subtitle">Browse the current FIT LOCKER catalogue.</p>
+    </div>
+
+    <!-- ========== CATALOGUE CONTROLS ========== -->
+    <div class="controls">
+      <div class="controls__search">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search products by name…"
+          aria-label="Search products by name"
+        />
+      </div>
+
+      <!-- ========== FILTERS DROPDOWN ========== -->
+      <div class="filter-dropdown" id="filterDropdown">
+        <button type="button" class="btn btn--secondary filter-dropdown__toggle" id="filterToggleBtn">
+          Filters
+        </button>
+
+        <div class="filter-dropdown__panel" id="filterPanel" hidden>
+          <div class="filter-dropdown__field">
+            <label for="categorySelect">Category</label>
+            <!-- Populated dynamically from fitLockerCategories -->
+            <select id="categorySelect" class="filter-select"></select>
+          </div>
+
+          <div class="filter-dropdown__field">
+            <label for="availabilitySelect">Availability</label>
+            <select id="availabilitySelect" class="filter-select">
+              <option value="All">All</option>
+              <option value="In Stock">In Stock</option>
+              <option value="Out of Stock">Out of Stock</option>
+            </select>
+          </div>
+
+          <div class="filter-dropdown__field">
+            <label for="sortSelect">Sort</label>
+            <select id="sortSelect" class="filter-select">
+              <option value="default">Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn btn--secondary filter-dropdown__clear-btn" id="filterBarClearBtn">Clear Filters</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== RESULT COUNT ========== -->
+    <p class="result-count" id="resultCount"></p>
+
+    <!-- ========== LOADING STATE ========== -->
+    <div class="grid grid--skeleton" id="loadingState">
+      <div class="skeleton-card"><div class="skeleton-card__image"></div><div class="skeleton-card__line skeleton-card__line--wide"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div></div>
+      <div class="skeleton-card"><div class="skeleton-card__image"></div><div class="skeleton-card__line skeleton-card__line--wide"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div></div>
+      <div class="skeleton-card"><div class="skeleton-card__image"></div><div class="skeleton-card__line skeleton-card__line--wide"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div></div>
+      <div class="skeleton-card"><div class="skeleton-card__image"></div><div class="skeleton-card__line skeleton-card__line--wide"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div><div class="skeleton-card__line skeleton-card__line--narrow"></div></div>
+    </div>
+
+    <!-- ========== ERROR STATE ========== -->
+    <div class="state-message state-message--error" id="errorState" hidden>
+      <p class="state-message__title">We couldn't load the shop.</p>
+      <p class="state-message__body">
+        Your saved product data may be corrupted. Try clearing it and reloading the page.
+      </p>
+      <button class="btn" id="retryButton">Retry</button>
+    </div>
+
+    <!-- ========== EMPTY STATE ========== -->
+    <div class="state-message" id="emptyState" hidden>
+      <p class="state-message__title">No products match your search.</p>
+      <p class="state-message__body">Try a different keyword or category.</p>
+      <button class="btn btn--secondary" id="clearFiltersButton">Clear filters</button>
+    </div>
+
+    <!-- ========== PRODUCT GRID ========== -->
+    <div class="grid" id="productGrid" hidden></div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/catalogue.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

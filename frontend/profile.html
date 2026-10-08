@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account — FIT LOCKER</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">FIT LOCKER</span>
+        <span class="brand__tagline">Your Everyday Fit.</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Home</a>
+        <a href="shop.html" class="site-nav__link">Shop</a>
+        <a href="cart.html" class="site-nav__link">Cart</a>
+        <span class="auth-nav" id="authNavSlot"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="profile-page">
+
+    <!-- ========== GUARD: not logged in ========== -->
+    <div class="state-message" id="guardState" hidden>
+      <p class="state-message__title">Please log in to view your account.</p>
+      <p class="state-message__body">You need to be logged in to see your profile, orders, and receipts.</p>
+      <a href="login.html" class="btn">Log In</a>
+    </div>
+
+    <!-- ========== ACCOUNT AREA ========== -->
+    <div id="profileShell" hidden>
+
+      <h1 class="profile-page__title">My Account</h1>
+
+      <div class="profile-tabs" id="profileTabs">
+        <button type="button" class="profile-tab profile-tab--active" data-tab="profile">Profile</button>
+        <button type="button" class="profile-tab" data-tab="orders">My Orders</button>
+        <button type="button" class="profile-tab" data-tab="tracking">Track Orders</button>
+        <button type="button" class="profile-tab" data-tab="receipts">Receipts</button>
+        <button type="button" class="profile-tab" data-tab="support">Help &amp; Support</button>
+      </div>
+
+      <!-- ---------- Profile tab: Account Information ---------- -->
+      <div class="profile-tab-panel" id="tab-profile">
+        <div class="profile-card">
+          <h2 class="profile-section-title">Account Information</h2>
+
+          <form class="profile-form" id="accountForm" novalidate>
+            <div class="profile-form__field">
+              <label class="profile-form__label" for="accountName">Full Name</label>
+              <input class="profile-form__input" type="text" id="accountName" />
+            </div>
+
+            <div class="profile-form__field">
+              <label class="profile-form__label" for="accountEmail">Email</label>
+              <input class="profile-form__input" type="email" id="accountEmail" disabled />
+              <p class="profile-form__hint">Email is your account ID and can't be changed.</p>
+            </div>
+
+            <div class="profile-form__field">
+              <label class="profile-form__label" for="accountPhone">Phone</label>
+              <input class="profile-form__input" type="tel" id="accountPhone" />
+            </div>
+
+            <div class="profile-form__field">
+              <label class="profile-form__label" for="accountAddress">Delivery Address</label>
+              <input class="profile-form__input" type="text" id="accountAddress" />
+            </div>
+
+            <p class="profile-form__message" id="accountMessage" hidden></p>
+
+            <button type="submit" class="btn profile-form__submit">Save Changes</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ---------- My Orders tab ---------- -->
+      <div class="profile-tab-panel" id="tab-orders" hidden>
+        <div class="profile-card">
+          <h2 class="profile-section-title">Current Orders</h2>
+          <div class="profile-order-list" id="currentOrdersList"></div>
+          <p class="profile-empty" id="currentOrdersEmpty" hidden>No active orders.</p>
+        </div>
+
+        <div class="profile-card">
+          <h2 class="profile-section-title">Order History</h2>
+          <div class="profile-order-list" id="orderHistoryList"></div>
+          <p class="profile-empty" id="orderHistoryEmpty" hidden>No past orders yet.</p>
+        </div>
+      </div>
+
+      <!-- ---------- Track Orders tab ---------- -->
+      <div class="profile-tab-panel" id="tab-tracking" hidden>
+        <div class="profile-card">
+          <h2 class="profile-section-title">Track Orders</h2>
+          <div class="profile-tracking-list" id="trackingList"></div>
+          <p class="profile-empty" id="trackingEmpty" hidden>You have no orders to track yet.</p>
+        </div>
+      </div>
+
+      <!-- ---------- Receipts tab ---------- -->
+      <div class="profile-tab-panel" id="tab-receipts" hidden>
+        <div class="profile-card">
+          <h2 class="profile-section-title">Receipts</h2>
+          <div class="profile-order-list" id="receiptsList"></div>
+          <p class="profile-empty" id="receiptsEmpty" hidden>No orders yet — receipts will appear here after checkout.</p>
+        </div>
+      </div>
+
+      <!-- ---------- Help & Support tab ---------- -->
+      <div class="profile-tab-panel" id="tab-support" hidden>
+        <div class="profile-card">
+          <h2 class="profile-section-title">Submit a Complaint</h2>
+
+          <form class="profile-form" id="complaintForm" novalidate>
+            <div class="profile-form__field">
+              <label class="profile-form__label" for="complaintCategory">Category</label>
+              <select class="profile-form__input" id="complaintCategory">
+                <option value="Order Issue">Order Issue</option>
+                <option value="Delivery Issue">Delivery Issue</option>
+                <option value="Product Issue">Product Issue</option>
+                <option value="Payment Issue">Payment Issue</option>
+                <option value="Account Issue">Account Issue</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="profile-form__field">
+              <label class="profile-form__label" for="complaintSubject">Subject</label>
+              <input class="profile-form__input" type="text" id="complaintSubject" />
+            </div>
+
+            <div class="profile-form__field">
+              <label class="profile-form__label" for="complaintMessage">Message</label>
+              <textarea class="profile-form__input" id="complaintMessage" rows="4"></textarea>
+            </div>
+
+            <p class="profile-form__message" id="complaintMessageStatus" hidden></p>
+
+            <button type="submit" class="btn profile-form__submit">Submit Complaint</button>
+          </form>
+        </div>
+
+        <div class="profile-card">
+          <h2 class="profile-section-title">Your Complaints</h2>
+          <div class="profile-complaint-list" id="complaintList"></div>
+          <p class="profile-empty" id="complaintEmpty" hidden>You haven't submitted any complaints yet.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 FIT LOCKER. Your Everyday Fit.</p>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
